@@ -1,7 +1,6 @@
 import 'package:ecommerce_php/core/constants/connection.dart';
 import 'package:ecommerce_php/model/product.dart';
-import 'package:ecommerce_php/ui/user/products/build_name_and_price.dart';
-import 'package:ecommerce_php/ui/user/products/build_rating_bar.dart';
+import 'package:ecommerce_php/ui/user/products/building_product_info.dart';
 import 'package:flutter/material.dart';
 
 class ProductVerticalCard extends StatelessWidget {
@@ -42,20 +41,7 @@ class ProductVerticalCard extends StatelessWidget {
               ),
             ),
             // Item name & price
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Name & Price
-                  buildNameAndPrice(name: product.name!, price: double.tryParse(product.price!) ?? 00.00),
-
-                  const SizedBox(height: 8),
-                  // Rating
-                  buildRatingBar(rating: double.tryParse(product.rating!) ?? 0.0, onRatingUpdate: (updatedRating) {}),
-                ],
-              ),
-            )
+            buildProductInfo(product: product),
           ],
         ),
       ),

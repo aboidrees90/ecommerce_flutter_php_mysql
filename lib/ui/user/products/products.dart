@@ -19,6 +19,7 @@ class Products extends StatelessWidget {
       builder: (context, AsyncSnapshot<List<Product>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
         if (!snapshot.hasData) return const Center(child: Text("No Products Found!"));
+
         if (snapshot.data!.isNotEmpty) {
           return ListView.builder(
             itemCount: snapshot.data!.length,

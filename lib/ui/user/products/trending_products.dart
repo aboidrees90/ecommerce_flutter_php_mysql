@@ -13,14 +13,14 @@ class TrendingProduct extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = Get.size;
     final cardWidth = (size.width - 48) / 2;
-    const cardHeight = 260.0;
+    final cardHeight = cardWidth * 5 / 3.1;
 
     return FutureBuilder(
       future: _controller.getTrending(),
       builder: (context, AsyncSnapshot<List<Product>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) return const Center(child: CircularProgressIndicator());
-
         if (!snapshot.hasData) return const Center(child: Text("No Trending Products Found!"));
+
         if (snapshot.data!.isNotEmpty) {
           return SizedBox(
             height: cardHeight,

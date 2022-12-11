@@ -1,7 +1,6 @@
 import 'package:ecommerce_php/core/constants/connection.dart';
 import 'package:ecommerce_php/model/product.dart';
-import 'package:ecommerce_php/ui/user/products/build_name_and_price.dart';
-import 'package:ecommerce_php/ui/user/products/build_rating_bar.dart';
+import 'package:ecommerce_php/ui/user/products/building_product_info.dart';
 import 'package:flutter/material.dart';
 
 class ProductHorizontalCard extends StatelessWidget {
@@ -27,28 +26,7 @@ class ProductHorizontalCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Name & Price
-                    buildNameAndPrice(name: product.name!, price: double.tryParse(product.price!) ?? 00.00),
-                    const SizedBox(height: 8),
-                    // Tags
-                    Text(
-                      "Tags:\n${product.tags.toString().replaceAll(']', "").replaceAll('[', '')}",
-                      style: const TextStyle(color: Colors.white, fontSize: 12),
-                    ),
-                    const SizedBox(height: 8),
-                    // Rating
-                    buildRatingBar(rating: double.tryParse(product.rating!) ?? 0.0, onRatingUpdate: (updatedRating) {}),
-                  ],
-                ),
-              ),
-            ),
+            buildProductInfo(product: product),
             ClipRRect(
               borderRadius: const BorderRadius.horizontal(right: Radius.circular(20)),
               child: FadeInImage(
