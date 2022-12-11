@@ -4,16 +4,16 @@ import 'dart:convert';
 class Product {
   int? id;
   String? name;
-  String? rating;
+  double? rating;
   String? tags;
-  String? price;
+  double? price;
   String? sizes;
   String? colors;
   String? description;
   String? image;
   Product({this.id, this.name, this.rating, this.tags, this.price, this.sizes, this.colors, this.description, this.image});
 
-  Product copyWith({int? id, String? name, String? rating, String? tags, String? price, String? sizes, String? colors, String? description, String? image}) {
+  Product copyWith({int? id, String? name, double? rating, String? tags, double? price, String? sizes, String? colors, String? description, String? image}) {
     return Product(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -31,9 +31,9 @@ class Product {
     return <String, dynamic>{
       'id': id ?? "",
       'name': name ?? "",
-      'rating': rating ?? "",
+      'rating': rating ?? 0.0,
       'tags': tags ?? "",
-      'price': price ?? "",
+      'price': price ?? 0.0,
       'sizes': sizes ?? "",
       'colors': colors ?? "",
       'description': description ?? "",
@@ -45,9 +45,9 @@ class Product {
     return Product(
       id: int.tryParse(map['id'].toString()),
       name: map['name'] as String,
-      rating: map['rating'] as String,
+      rating: double.tryParse(map['rating'].toString()),
       tags: map['tags'] as String,
-      price: map['price'] as String,
+      price: double.tryParse(map['price'].toString()),
       sizes: map['sizes'] as String,
       colors: map['colors'] as String,
       description: map['description'] as String,

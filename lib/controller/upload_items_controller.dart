@@ -72,9 +72,9 @@ class UploadItemsController extends UploadItemsBase {
   Future saveItem() async {
     final newProd = Product(
       name: name.text,
-      rating: rating.text,
+      rating: double.tryParse(rating.text),
       tags: tags.text.split(',').toString(),
-      price: price.text,
+      price: double.tryParse(price.text),
       sizes: sizes.text.split(',').toString(),
       colors: colors.text.split(',').toString(),
       description: description.text,

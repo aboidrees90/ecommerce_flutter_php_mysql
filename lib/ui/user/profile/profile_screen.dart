@@ -1,4 +1,4 @@
-import 'package:ecommerce_php/controller/auth.dart';
+import 'package:ecommerce_php/controller/auth_controller.dart';
 import 'package:ecommerce_php/core/constants/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
