@@ -1,6 +1,6 @@
 import 'package:ecommerce_php/controller/products_controller.dart';
 import 'package:ecommerce_php/model/product.dart';
-import 'package:ecommerce_php/ui/user/products/product_card.dart';
+import 'package:ecommerce_php/ui/user/products/product_vertical_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +32,7 @@ class TrendingProduct extends StatelessWidget {
                 final isFirst = index == 0 ? 16.0 : 8.0;
                 final isLast = index == snapshot.data!.length - 1 ? 16.0 : 8.0;
 
-                return ProductCard(
+                return ProductVerticalCard(
                   height: cardHeight,
                   width: cardWidth,
                   product: product,

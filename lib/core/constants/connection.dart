@@ -17,4 +17,5 @@ class Connections {
   static const productSave = "$_productsURL/save.php";
 
   static const trendingProducts = "$_productsURL/trending.php";
+  static const products = "$_productsURL/products.php";
 }

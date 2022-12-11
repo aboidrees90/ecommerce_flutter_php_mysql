@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 abstract class ProductsBase extends GetxController {
   Future<List<Product>> getTrending();
+  Future<List<Product>> getAllProducts();
 }
 
 class ProductsController extends ProductsBase {
@@ -24,4 +25,7 @@ class ProductsController extends ProductsBase {
 
   @override
   Future<List<Product>> getTrending() async => await ProductAPI.getTrending();
+
+  @override
+  Future<List<Product>> getAllProducts() async => await ProductAPI.getAllProducts();
 }

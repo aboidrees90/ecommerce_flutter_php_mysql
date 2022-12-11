@@ -1,10 +1,11 @@
 import 'package:ecommerce_php/core/constants/connection.dart';
 import 'package:ecommerce_php/model/product.dart';
+import 'package:ecommerce_php/ui/user/products/build_name_and_price.dart';
+import 'package:ecommerce_php/ui/user/products/build_rating_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({Key? key, required this.height, required this.width, required this.product, this.margin}) : super(key: key);
+class ProductVerticalCard extends StatelessWidget {
+  const ProductVerticalCard({Key? key, required this.height, required this.width, required this.product, this.margin}) : super(key: key);
 
   final double height;
   final double width;
@@ -22,7 +23,7 @@ class ProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: const [BoxShadow(offset: Offset(0, 3), blurRadius: 4, spreadRadius: -2, color: Colors.grey)],
+          boxShadow: const [BoxShadow(offset: Offset(0, 0), blurRadius: 3, color: Colors.white)],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -47,58 +48,17 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Name & Price
-                  buildNameAndPrice(),
+                  buildNameAndPrice(name: product.name!, price: double.tryParse(product.price!) ?? 00.00),
+
                   const SizedBox(height: 8),
                   // Rating
-                  buildRatingBar()
+                  buildRatingBar(rating: double.tryParse(product.rating!) ?? 0.0, onRatingUpdate: (updatedRating) {}),
                 ],
               ),
             )
           ],
         ),
       ),
-    );
-  }
-
-  Row buildRatingBar() {
-    return Row(
-      children: [
-        // rating stars
-        RatingBar.builder(
-          initialRating: double.tryParse(product.rating!) ?? 1.0,
-          minRating: 1,
-          direction: Axis.horizontal,
-          allowHalfRating: true,
-          itemCount: 5,
-          itemBuilder: (_, __) => const Icon(Icons.star, color: Colors.amber),
-          onRatingUpdate: (updatedRating) {},
-          ignoreGestures: true,
-          unratedColor: Colors.grey,
-          itemSize: 20,
-        ),
-
-        const SizedBox(width: 8),
-
-        // rating number
-        Text("(${product.rating!})", style: const TextStyle(color: Colors.grey, fontSize: 16))
-      ],
-    );
-  }
-
-  Row buildNameAndPrice() {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            product.name!,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Text(product.price!, style: const TextStyle(color: Colors.purpleAccent, fontSize: 16, fontWeight: FontWeight.bold)),
-      ],
     );
   }
 }
