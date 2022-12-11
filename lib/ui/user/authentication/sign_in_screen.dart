@@ -8,11 +8,10 @@ class SignInScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
   final _isObscure = true.obs;
+  final SignInController _controller = Get.put(SignInController());
 
   @override
   Widget build(BuildContext context) {
-    final SignInController controller = Get.put(SignInController());
-
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
@@ -50,7 +49,7 @@ class SignInScreen extends StatelessWidget {
                               children: [
                                 // Email
                                 TextFormField(
-                                  controller: controller.email,
+                                  controller: _controller.email,
                                   validator: (value) => value == "" ? "Please write an email" : null,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.email, color: Colors.black),
@@ -82,7 +81,7 @@ class SignInScreen extends StatelessWidget {
                                 // Password
                                 Obx(
                                   () => TextFormField(
-                                    controller: controller.password,
+                                    controller: _controller.password,
                                     validator: (value) => value == "" ? "Please write password" : null,
                                     obscureText: _isObscure.value,
                                     decoration: InputDecoration(
@@ -125,8 +124,7 @@ class SignInScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30),
                                   child: InkWell(
                                     onTap: () async {
-                                      if (!_formKey.currentState!.validate()) return;
-                                      await controller.signIn();
+                                      if (_formKey.currentState!.validate()) await _controller.signIn();
                                     },
                                     borderRadius: BorderRadius.circular(30),
                                     child: const Padding(
@@ -145,7 +143,7 @@ class SignInScreen extends StatelessWidget {
                             children: [
                               const Text("Don't have an account?", style: TextStyle(color: Colors.grey, fontSize: 14)),
                               TextButton(
-                                onPressed: controller.goToSignUp,
+                                onPressed: _controller.goToSignUp,
                                 child: const Text("Sign up from here", style: TextStyle(color: Colors.white, fontSize: 16)),
                               ),
                             ],
@@ -157,7 +155,7 @@ class SignInScreen extends StatelessWidget {
                             children: [
                               const Text("Are you an admin?", style: TextStyle(color: Colors.grey, fontSize: 14)),
                               TextButton(
-                                onPressed: controller.goToAdminSignIn,
+                                onPressed: _controller.goToAdminSignIn,
                                 child: const Text("Click here", style: TextStyle(color: Colors.white, fontSize: 16)),
                               ),
                             ],

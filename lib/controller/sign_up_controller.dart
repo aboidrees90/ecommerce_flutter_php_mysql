@@ -1,8 +1,7 @@
-import 'dart:developer';
+import 'dart:developer' show log;
 
-import 'package:ecommerce_php/constants/exceptions/auth.dart';
-import 'package:ecommerce_php/constants/routes.dart';
 import 'package:ecommerce_php/controller/auth.dart';
+import 'package:ecommerce_php/core/constants/routes.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,7 @@ abstract class SignUpBase extends GetxController {
 
   //
   goToSignIn();
-  goToDashBoard();
+  goToHomeScreen();
 }
 
 class SignUpController extends SignUpBase {
@@ -38,20 +37,32 @@ class SignUpController extends SignUpBase {
   @override
   signUp() async {
     try {
-      _auth.signUp(email: email.text.trim(), password: password.text.trim());
-      goToDashBoard();
-    } on UserNotExists {
-      Fluttertoast.showToast(msg: "User with this credentials is not exists");
-    } on DatabaseError {
-      Fluttertoast.showToast(msg: "System failure, please, contact support");
-    } catch (e) {
-      log(e.toString());
+      final user = await _auth.signUp(email: email.text.trim(), password: password.text.trim());
+
+      if (user != null) {
+        goToHomeScreen();
+      } else {
+        Fluttertoast.showToast(msg: "User with this credentials is not exists");
+      }
+    } catch (e, s) {
+      if (e.toString() == "EmailAlreadyUsed") {
+        Fluttertoast.showToast(msg: "This email is already exists");
+        return;
+      } else if (e.toString() == "DatabaseErrorException") {
+        Fluttertoast.showToast(msg: "System failure, please, contact support");
+        return;
+      }
+      log("${e.toString()}, ${s.toString()}");
+      Fluttertoast.showToast(msg: "Unknown Error");
     }
   }
 
   @override
-  goToSignIn() => Get.toNamed(AppRoutes.signIn);
+  goToSignIn() => Get.offNamed(AppRoutes.signIn);
 
   @override
-  goToDashBoard() => Get.toNamed(AppRoutes.userDashboard);
+  goToHomeScreen() {
+    log(_auth.currentUser.toString());
+    Get.offNamed(AppRoutes.home);
+  }
 }

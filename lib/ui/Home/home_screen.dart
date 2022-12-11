@@ -1,10 +1,10 @@
 import 'package:ecommerce_php/controller/auth.dart';
-import 'package:ecommerce_php/ui/dashboard/bottom_navigation.dart';
+import 'package:ecommerce_php/ui/Home/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DashboardScreen extends StatelessWidget {
-  DashboardScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
   final Auth _auth = Get.put(Auth());
 
@@ -12,16 +12,17 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _auth.loadCachedUserInfo();
-
     return GetBuilder(
       init: Auth(),
       initState: (currentState) => _auth,
       builder: (controller) {
+        var screenList = controller.isAdmin ? adminScreensList : userScreensList;
+        var navBtnPropsList = controller.isAdmin ? adminNavBtnPropsList : userNavBtnPropsList;
+
         return SafeArea(
           child: Scaffold(
             backgroundColor: const Color.fromARGB(255, 27, 27, 27),
-            body: Obx(() => screensList[_indexNumber.value]),
+            body: Obx(() => screenList[_indexNumber.value]),
             bottomNavigationBar: Obx(
               () => BottomNavigationBar(
                 currentIndex: _indexNumber.value,
@@ -30,9 +31,8 @@ class DashboardScreen extends StatelessWidget {
                 showUnselectedLabels: true,
                 selectedItemColor: Colors.white,
                 unselectedItemColor: Colors.white24,
-                items: List.generate(4, (index) {
+                items: List.generate(screenList.length, (index) {
                   var navBtnProps = navBtnPropsList[index];
-
                   return BottomNavigationBarItem(
                     backgroundColor: Colors.black,
                     icon: Icon(navBtnProps['non_active_icon']),
