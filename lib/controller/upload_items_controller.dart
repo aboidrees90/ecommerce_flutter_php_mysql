@@ -73,10 +73,10 @@ class UploadItemsController extends UploadItemsBase {
     final newProd = Product(
       name: name.text,
       rating: double.tryParse(rating.text),
-      tags: tags.text.split(',').toString(),
+      tags: tags.text.split(',').toList(),
       price: double.tryParse(price.text),
-      sizes: sizes.text.split(',').toString(),
-      colors: colors.text.split(',').toString(),
+      sizes: sizes.text.split(',').toList(),
+      colors: colors.text.split(',').toList(),
       description: description.text,
       image: "",
     );
