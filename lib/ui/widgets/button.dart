@@ -10,12 +10,14 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      elevation: 4,
       color: color,
       borderRadius: BorderRadius.circular(30),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(30),
-        child: Padding(
+        child: Container(
+          alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 28),
           child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 14)),
         ),

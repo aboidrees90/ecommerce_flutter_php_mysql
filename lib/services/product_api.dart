@@ -90,4 +90,17 @@ class ProductAPI {
       rethrow;
     }
   }
+
+  static Future<List<Product>> getAllProducts() async {
+    try {
+      final response = await _get(url: Connections.products);
+      List<Product> products = [];
+      for (var product in (response as List)) {
+        products.add(Product.fromMap(product));
+      }
+      return products;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

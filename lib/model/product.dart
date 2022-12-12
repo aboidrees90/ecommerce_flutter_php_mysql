@@ -1,19 +1,31 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:ecommerce_php/core/functions/list_parse.dart';
+
 class Product {
   int? id;
   String? name;
-  String? rating;
-  String? tags;
-  String? price;
-  String? sizes;
-  String? colors;
+  double? rating;
+  List<String>? tags;
+  double? price;
+  List<String>? sizes;
+  List<String>? colors;
   String? description;
   String? image;
   Product({this.id, this.name, this.rating, this.tags, this.price, this.sizes, this.colors, this.description, this.image});
 
-  Product copyWith({int? id, String? name, String? rating, String? tags, String? price, String? sizes, String? colors, String? description, String? image}) {
+  Product copyWith({
+    int? id,
+    String? name,
+    double? rating,
+    List<String>? tags,
+    double? price,
+    List<String>? sizes,
+    List<String>? colors,
+    String? description,
+    String? image,
+  }) {
     return Product(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -29,15 +41,15 @@ class Product {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id ?? "",
-      'name': name ?? "",
-      'rating': rating ?? "",
-      'tags': tags ?? "",
-      'price': price ?? "",
-      'sizes': sizes ?? "",
-      'colors': colors ?? "",
-      'description': description ?? "",
-      'image': image ?? "",
+      'id': id.toString(),
+      'name': name.toString(),
+      'rating': rating.toString(),
+      'tags': tags.toString(),
+      'price': price.toString(),
+      'sizes': sizes.toString(),
+      'colors': colors.toString(),
+      'description': description.toString(),
+      'image': image.toString(),
     };
   }
 
@@ -45,11 +57,11 @@ class Product {
     return Product(
       id: int.tryParse(map['id'].toString()),
       name: map['name'] as String,
-      rating: map['rating'] as String,
-      tags: map['tags'] as String,
-      price: map['price'] as String,
-      sizes: map['sizes'] as String,
-      colors: map['colors'] as String,
+      rating: double.tryParse(map['rating'].toString()),
+      tags: listParse(map['tags'].toString()),
+      price: double.tryParse(map['price'].toString()),
+      sizes: listParse(map['sizes'].toString()),
+      colors: listParse(map['colors'].toString()),
       description: map['description'] as String,
       image: map['image'] as String,
     );

@@ -5,4 +5,5 @@ class AppRoutes {
   static String adminSignUp = "/adminSignUp";
 
   static String home = "/home";
+  static String productDetails = "/productDetails";
 }

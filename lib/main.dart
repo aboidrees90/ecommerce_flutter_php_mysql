@@ -1,10 +1,11 @@
-import 'package:ecommerce_php/controller/auth.dart';
+import 'package:ecommerce_php/controller/auth_controller.dart';
 import 'package:ecommerce_php/core/constants/theme.dart';
 import 'package:ecommerce_php/routes.dart';
 import 'package:ecommerce_php/ui/Home/home_screen.dart';
 import 'package:ecommerce_php/ui/user/authentication/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Ecommerce App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+      theme: ThemeData(useMaterial3: true, fontFamily: GoogleFonts.cairo().fontFamily, colorScheme: lightColorScheme),
+      darkTheme: ThemeData(useMaterial3: true, fontFamily: GoogleFonts.cairo().fontFamily, colorScheme: darkColorScheme),
       home: FutureBuilder(
         future: _auth.initializeAuth(),
         builder: (context, snapshot) => (_auth.currentUser == null) ? SignInScreen() : HomeScreen(),
