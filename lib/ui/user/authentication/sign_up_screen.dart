@@ -50,6 +50,7 @@ class SignUpScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 TextFormField(
+                                  style: const TextStyle(color: Colors.black),
                                   controller: controller.email,
                                   validator: (value) => value == "" ? "Please write an email" : null,
                                   decoration: inputStyle(hintText: "Email ...", prefixIconData: Icons.email),
@@ -60,6 +61,7 @@ class SignUpScreen extends StatelessWidget {
                                 // Password
                                 Obx(
                                   () => TextFormField(
+                                    style: const TextStyle(color: Colors.black),
                                     controller: controller.password,
                                     validator: (value) => value == "" ? "Please write password" : null,
                                     obscureText: _isObscure.value,
