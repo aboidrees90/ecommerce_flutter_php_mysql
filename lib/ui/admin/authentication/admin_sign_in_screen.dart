@@ -1,4 +1,5 @@
 import 'package:ecommerce_php/controller/admin_sign_in_controller.dart';
+import 'package:ecommerce_php/core/functions/input_style.dart';
 import 'package:ecommerce_php/ui/widgets/auth_screen_head.dart';
 import 'package:ecommerce_php/ui/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -50,31 +51,10 @@ class AdminSignInScreen extends StatelessWidget {
                               children: [
                                 // Email
                                 TextFormField(
+                                  style: const TextStyle(color: Colors.black),
                                   controller: controller.email,
                                   validator: (value) => value == "" ? "Please write an email" : null,
-                                  decoration: const InputDecoration(
-                                    prefixIcon: Icon(Icons.email, color: Colors.black),
-                                    hintText: "Email ...",
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                                      borderSide: BorderSide(color: Colors.white60),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                                      borderSide: BorderSide(color: Colors.white60),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                                      borderSide: BorderSide(color: Colors.white60),
-                                    ),
-                                    disabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(30)),
-                                      borderSide: BorderSide(color: Colors.white60),
-                                    ),
-                                    contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                  ),
+                                  decoration: inputStyle(hintText: "Email ...", prefixIconData: Icons.email),
                                 ),
 
                                 const SizedBox(height: 15),
@@ -82,37 +62,19 @@ class AdminSignInScreen extends StatelessWidget {
                                 // Password
                                 Obx(
                                   () => TextFormField(
+                                    style: const TextStyle(color: Colors.black),
                                     controller: controller.password,
                                     validator: (value) => value == "" ? "Please write password" : null,
                                     obscureText: _isObscure.value,
-                                    decoration: InputDecoration(
-                                      prefixIcon: const Icon(Icons.vpn_key_sharp, color: Colors.black),
+                                    decoration: inputStyle(
                                       hintText: "Password ...",
+                                      prefixIconData: Icons.vpn_key_sharp,
                                       suffixIcon: Obx(
                                         () => GestureDetector(
                                           onTap: () => _isObscure.value = !_isObscure.value,
                                           child: Icon(_isObscure.value ? Icons.visibility_off : Icons.visibility, color: Colors.black),
                                         ),
                                       ),
-                                      border: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                                        borderSide: BorderSide(color: Colors.white60),
-                                      ),
-                                      enabledBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                                        borderSide: BorderSide(color: Colors.white60),
-                                      ),
-                                      focusedBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                                        borderSide: BorderSide(color: Colors.white60),
-                                      ),
-                                      disabledBorder: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                                        borderSide: BorderSide(color: Colors.white60),
-                                      ),
-                                      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                                      fillColor: Colors.white,
-                                      filled: true,
                                     ),
                                   ),
                                 ),

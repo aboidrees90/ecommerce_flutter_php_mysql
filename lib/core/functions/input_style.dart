@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 InputDecoration inputStyle({required String hintText, IconData? prefixIconData, Widget? prefixIcon, IconData? suffixIconData, Widget? suffixIcon}) {
   return InputDecoration(
-    prefixIcon: prefixIcon ?? Icon(prefixIconData, color: Colors.black),
+    prefixIcon: prefixIcon ?? (prefixIconData != null ? Icon(prefixIconData, color: Colors.black) : null),
     hintText: hintText,
+    hintStyle: TextStyle(color: Colors.grey.withOpacity(0.6)),
     suffixIcon: suffixIcon ?? Icon(suffixIconData, color: Colors.black),
     border: const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(30)),

@@ -1,45 +1,107 @@
 import 'package:ecommerce_php/controller/auth_controller.dart';
+import 'package:ecommerce_php/ui/Home/bottom_app_bar_button.dart';
 import 'package:ecommerce_php/ui/Home/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-
-  final Auth _auth = Get.put(Auth());
-
-  final Rx _indexNumber = 0.obs;
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Auth auth = Get.put(Auth());
+    final Rx indexNumber = 1.obs;
+    final PageStorageBucket bucket = PageStorageBucket();
+
     return GetBuilder(
       init: Auth(),
-      initState: (currentState) => _auth,
+      initState: (currentState) => auth,
       builder: (controller) {
-        var screenList = controller.isAdmin ? adminScreensList : userScreensList;
-        var navBtnPropsList = controller.isAdmin ? adminNavBtnPropsList : userNavBtnPropsList;
-
         return SafeArea(
+          bottom: false,
           child: Scaffold(
-            backgroundColor: const Color.fromARGB(255, 27, 27, 27),
-            body: Obx(() => screenList[_indexNumber.value]),
-            bottomNavigationBar: Obx(
-              () => BottomNavigationBar(
-                currentIndex: _indexNumber.value,
-                onTap: (value) => _indexNumber.value = value,
-                showSelectedLabels: true,
-                showUnselectedLabels: true,
-                selectedItemColor: Colors.white,
-                unselectedItemColor: Colors.white24,
-                items: List.generate(screenList.length, (index) {
-                  var navBtnProps = navBtnPropsList[index];
-                  return BottomNavigationBarItem(
+            extendBody: true,
+            backgroundColor: Colors.white24,
+            body: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: PageStorage(
+                bucket: bucket,
+                child: Obx(() => screensList[indexNumber.value]),
+              ),
+            ),
+            floatingActionButton: auth.isAdmin
+                ? FloatingActionButton(
+                    shape: const CircleBorder(),
                     backgroundColor: Colors.black,
-                    icon: Icon(navBtnProps['non_active_icon']),
-                    activeIcon: Icon(navBtnProps['active_icon']),
-                    label: navBtnProps['label'],
-                  );
-                }),
+                    child: const Icon(Icons.add),
+                    onPressed: () => indexNumber.value = 0,
+                  )
+                : null,
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: Obx(
+              () => BottomAppBar(
+                shape: const CircularNotchedRectangle(),
+                notchMargin: 10,
+                color: Colors.black,
+                elevation: 0,
+                child: SizedBox(
+                  height: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          BottomAppBarItem(
+                            index: 1,
+                            currentIndex: indexNumber.value,
+                            onTap: () => indexNumber.value = 1,
+                            activeIcon: navBtnPropsList[1]["active_icon"],
+                            nonActiveIcon: navBtnPropsList[1]["non_active_icon"],
+                            label: navBtnPropsList[1]["label"],
+                            selectedColor: Colors.white,
+                            unSelectedColor: Colors.white38,
+                          ),
+                          BottomAppBarItem(
+                            index: 2,
+                            currentIndex: indexNumber.value,
+                            onTap: () => indexNumber.value = 2,
+                            activeIcon: navBtnPropsList[2]["active_icon"],
+                            nonActiveIcon: navBtnPropsList[2]["non_active_icon"],
+                            label: navBtnPropsList[2]["label"],
+                            selectedColor: Colors.white,
+                            unSelectedColor: Colors.white38,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          BottomAppBarItem(
+                            index: 3,
+                            currentIndex: indexNumber.value,
+                            onTap: () => indexNumber.value = 3,
+                            activeIcon: navBtnPropsList[3]["active_icon"],
+                            nonActiveIcon: navBtnPropsList[3]["non_active_icon"],
+                            label: navBtnPropsList[3]["label"],
+                            selectedColor: Colors.white,
+                            unSelectedColor: Colors.white38,
+                          ),
+                          BottomAppBarItem(
+                            index: 4,
+                            currentIndex: indexNumber.value,
+                            onTap: () => indexNumber.value = 4,
+                            activeIcon: navBtnPropsList[4]["active_icon"],
+                            nonActiveIcon: navBtnPropsList[4]["non_active_icon"],
+                            label: navBtnPropsList[4]["label"],
+                            selectedColor: Colors.white,
+                            unSelectedColor: Colors.white38,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

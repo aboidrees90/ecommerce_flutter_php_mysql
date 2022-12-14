@@ -12,6 +12,6 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppRoutes.adminSignIn, page: () => AdminSignInScreen()),
 
   //
-  GetPage(name: AppRoutes.home, page: () => HomeScreen()),
+  GetPage(name: AppRoutes.home, page: () => const HomeScreen()),
   GetPage(name: AppRoutes.productDetails, page: () => ProductDetailsScreen()),
 ];

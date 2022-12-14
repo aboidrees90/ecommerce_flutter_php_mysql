@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(useMaterial3: true, fontFamily: GoogleFonts.cairo().fontFamily, colorScheme: darkColorScheme),
       home: FutureBuilder(
         future: _auth.initializeAuth(),
-        builder: (context, snapshot) => (_auth.currentUser == null) ? SignInScreen() : HomeScreen(),
+        builder: (context, snapshot) => (_auth.currentUser == null) ? SignInScreen() : const HomeScreen(),
       ),
       getPages: routes,
     );

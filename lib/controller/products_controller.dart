@@ -24,8 +24,8 @@ class ProductsController extends ProductsBase {
   }
 
   @override
-  Future<List<Product>> getTrending() async => await ProductAPI.getTrending();
+  Future<List<Product>> getTrending() async => await ProductAPI.fetchTrending();
 
   @override
-  Future<List<Product>> getAllProducts() async => await ProductAPI.getAllProducts();
+  Future<List<Product>> getAllProducts() async => await ProductAPI.fetchAll();
 }

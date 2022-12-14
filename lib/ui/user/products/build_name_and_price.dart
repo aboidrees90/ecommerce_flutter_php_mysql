@@ -6,15 +6,15 @@ Row buildNameAndPrice({required String name, required double price}) {
       Expanded(
         child: Text(
           name,
-          maxLines: 2,
+          maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ),
       const SizedBox(width: 10),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Text("$price", style: const TextStyle(color: Colors.purpleAccent, fontSize: 16, fontWeight: FontWeight.bold)),
+        child: Text("\$$price", style: const TextStyle(color: Colors.purpleAccent, fontSize: 14, fontWeight: FontWeight.bold)),
       ),
     ],
   );
