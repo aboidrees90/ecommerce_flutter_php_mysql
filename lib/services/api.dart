@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -23,7 +24,7 @@ class API {
     }
   }
 
-  static Future<dynamic> get({required String url}) async {
+  static Future<List<dynamic>> get({required String url}) async {
     try {
       var res = await http.get(Uri.parse(url));
 
@@ -32,12 +33,13 @@ class API {
         if (!resBody['success']) {
           throw resBody['message'];
         } else {
-          return resBody['data'];
+          return resBody['data'].toList();
         }
       } else {
         throw "Error: ${res.statusCode} - ${res.body}";
       }
     } catch (e) {
+      log(e.toString());
       rethrow;
     }
   }
