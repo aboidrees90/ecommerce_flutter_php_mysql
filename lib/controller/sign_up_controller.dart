@@ -1,7 +1,7 @@
 import 'dart:developer' show log;
 
-import 'package:ecommerce_php/controller/auth_controller.dart';
-import 'package:ecommerce_php/core/constants/routes.dart';
+import 'package:ecommerce_php/core/constants/routes_names.dart';
+import 'package:ecommerce_php/features/account/authentication/auth_controller.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';

@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:ecommerce_php/core/constants/routes.dart';
+import 'package:ecommerce_php/core/constants/routes_names.dart';
 import 'package:ecommerce_php/services/file_api.dart';
 import 'package:ecommerce_php/services/product_api.dart';
 import 'package:flutter/widgets.dart';
@@ -55,7 +55,6 @@ class UploadProductsController extends GetxController {
     } else {
       Get.snackbar("Error", "No Selected Image", snackPosition: SnackPosition.BOTTOM);
     }
-    Get.back();
   }
 
   void clearImage() {
