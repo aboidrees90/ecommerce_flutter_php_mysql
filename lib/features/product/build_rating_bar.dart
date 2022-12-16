@@ -21,7 +21,7 @@ Row buildRatingBar({required double rating, required void Function(double) onRat
       const SizedBox(width: 8),
 
       // rating number
-      Text("($rating)", style: const TextStyle(color: Colors.purpleAccent, fontSize: 16))
+      Text("($rating)", style: const TextStyle(color: Colors.amber, fontSize: 16))
     ],
   );
 }

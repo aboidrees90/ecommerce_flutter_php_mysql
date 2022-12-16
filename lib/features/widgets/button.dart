@@ -15,7 +15,7 @@ class Button extends StatelessWidget {
     required this.onTap,
     this.textSize = 14.0,
     this.textColor = Colors.white,
-    this.color = Colors.black,
+    this.color,
     this.padding = EdgeInsets.zero,
   }) : super(key: key);
 

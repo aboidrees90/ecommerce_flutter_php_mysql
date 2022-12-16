@@ -41,31 +41,31 @@ class ProductDetailsScreen extends StatelessWidget {
       height: Get.size.height * 0.6,
       width: Get.size.width,
       decoration: const BoxDecoration(
-        color: Colors.black,
+        color: Color(0xFF424242),
         borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-        boxShadow: [BoxShadow(color: Colors.purpleAccent, blurRadius: 3, offset: Offset(0, -3))],
+        boxShadow: [BoxShadow(offset: Offset(1, -1), spreadRadius: -1, blurRadius: 3, color: Colors.black)],
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
             Center(
               child: Container(
-                height: 8,
+                height: 5,
                 width: 140,
-                decoration: const BoxDecoration(color: Colors.purpleAccent, borderRadius: BorderRadius.all(Radius.circular(10))),
+                decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(5))),
               ),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 18),
 
             // name
             Text(
               product.name!,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(color: Colors.purpleAccent, fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 12),
@@ -85,7 +85,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         product.tags.toString().replaceAll('[', '').replaceAll(']', '').capitalize!,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(color: Colors.grey, fontSize: 16),
+                        style: TextStyle(color: Colors.grey.shade400, fontSize: 16),
                       ),
 
                       const SizedBox(height: 12),
@@ -93,7 +93,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       // price
                       Text(
                         "\$${product.price}",
-                        style: const TextStyle(color: Colors.purpleAccent, fontSize: 24, fontWeight: FontWeight.bold),
+                        style: const TextStyle(color: Colors.amber, fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -105,19 +105,19 @@ class ProductDetailsScreen extends StatelessWidget {
                     // plus button
                     IconButton(
                       onPressed: () => _controller.setQuantity(_controller.quantity + 1),
-                      icon: const Icon(Icons.add_circle_outline),
+                      icon: const Icon(Icons.add_circle, color: Colors.amber, size: 32),
                     ),
 
                     // display quantity value
                     Text(
                       _controller.quantity.toString(),
-                      style: const TextStyle(fontSize: 24, color: Colors.purpleAccent, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 24, color: Colors.amber, fontWeight: FontWeight.bold),
                     ),
 
                     // minus button
                     IconButton(
                       onPressed: () => _controller.setQuantity(_controller.quantity <= 1 ? _controller.quantity : _controller.quantity - 1),
-                      icon: const Icon(Icons.remove_circle_outline),
+                      icon: const Icon(Icons.remove_circle, color: Colors.amber, size: 32),
                     ),
                   ]),
                 ),
@@ -136,12 +136,12 @@ class ProductDetailsScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // description
-            const Text("Description:", style: TextStyle(fontSize: 18, color: Colors.purpleAccent, fontWeight: FontWeight.bold)),
+            const Text("Description:", style: TextStyle(fontSize: 18, color: Colors.amber, fontWeight: FontWeight.bold)),
             Text(product.description!, textAlign: TextAlign.justify, style: const TextStyle(color: Colors.grey)),
             const SizedBox(height: 30),
 
             // Add to cart button
-            Button(text: "Add To Cart", color: Colors.purpleAccent, onTap: () => _controller.addToCart(product: product)),
+            Button(text: "Add To Cart", color: Colors.amber, onTap: () => _controller.addToCart(product: product)),
 
             const SizedBox(height: 30),
           ],

@@ -14,7 +14,7 @@ Row buildNameAndPrice({required String name, required double price}) {
       const SizedBox(width: 10),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Text("\$$price", style: const TextStyle(color: Colors.purpleAccent, fontSize: 14, fontWeight: FontWeight.bold)),
+        child: Text("\$$price", style: const TextStyle(color: Colors.amber, fontSize: 14, fontWeight: FontWeight.bold)),
       ),
     ],
   );

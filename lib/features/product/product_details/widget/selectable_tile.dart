@@ -16,7 +16,7 @@ class SelectableTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(label, style: const TextStyle(fontSize: 18, color: Colors.purpleAccent, fontWeight: FontWeight.bold)),
+        Text(label, style: const TextStyle(fontSize: 18, color: Colors.amber, fontWeight: FontWeight.bold)),
         const SizedBox(height: 8),
         Wrap(
           runSpacing: 8,
@@ -32,8 +32,9 @@ class SelectableTile extends StatelessWidget {
                   width: (Get.size.width - 24) / 5,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(width: 2, color: currentIndex.value == index ? Colors.white : Colors.grey),
-                    color: currentIndex.value == index ? Colors.purpleAccent.withOpacity(0.4) : Colors.black,
+                    color: currentIndex.value == index ? Colors.amber.withOpacity(0.4) : const Color(0xFF323232),
                   ),
                   child: Text(items[index], style: TextStyle(color: currentIndex.value == index ? Colors.white : Colors.grey.shade600)),
                 ),

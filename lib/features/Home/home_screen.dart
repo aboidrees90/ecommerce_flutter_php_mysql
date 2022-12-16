@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 ? FloatingActionButton(
                     tooltip: "Add New Item",
                     shape: const CircleBorder(),
-                    backgroundColor: Colors.black,
+                    // backgroundColor: Colors.black,
                     child: const Icon(Icons.add),
                     onPressed: () => Get.toNamed(AppRoutes.newProduct),
                   )
@@ -43,8 +43,8 @@ class HomeScreen extends StatelessWidget {
               () => BottomAppBar(
                 shape: const CircularNotchedRectangle(),
                 notchMargin: 10,
-                color: Colors.black,
-                elevation: 10,
+                // color: Colors.black,
+                elevation: 5,
                 child: SizedBox(
                   height: 70,
                   child: Row(

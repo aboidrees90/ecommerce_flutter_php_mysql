@@ -59,7 +59,6 @@ class ProfileScreen extends StatelessWidget {
               text: "Sign up",
               textSize: 16.0,
               padding: const EdgeInsets.all(4),
-              color: Colors.redAccent,
               onTap: singOut,
             ),
           )
