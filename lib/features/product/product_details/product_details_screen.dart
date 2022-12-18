@@ -11,7 +11,6 @@ class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
 
   final product = Product.fromJson(Get.parameters['product']!);
-  final ProductDetailsController _controller = Get.put(ProductDetailsController());
 
   @override
   Widget build(BuildContext context) {

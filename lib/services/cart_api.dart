@@ -13,6 +13,15 @@ class CartAPI {
     }
   }
 
+  static Future delete({required Map<String, dynamic> body}) async {
+    try {
+      final res = await API.post(url: Connections.removeFromCart, body: body);
+      if (res != '') throw "UNKNOWN_ERROR";
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   static Future<List<Cart>> fetchCurrentUserCartList({required Map<String, dynamic> body}) async {
     try {
       final response = await API.post(url: Connections.getCartList, body: body);

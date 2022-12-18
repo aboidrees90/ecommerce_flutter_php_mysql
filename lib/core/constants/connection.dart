@@ -28,4 +28,5 @@ class Connections {
   // cart
   static const addToCart = "$_cartURL/add.php";
   static const getCartList = "$_cartURL/get.php";
+  static const removeFromCart = "$_cartURL/delete.php";
 }

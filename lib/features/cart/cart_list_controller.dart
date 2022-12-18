@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 
 class CartListController extends GetxController {
   final RxList<Cart> _cartList = <Cart>[].obs;
-  final RxList<int> _selectedProducts = <int>[].obs;
-  final RxBool _isAllSelected = false.obs;
+  final RxList<int> _selectedItems = <int>[].obs;
+  final RxBool _isAllItemsSelected = false.obs;
   final RxDouble _total = 0.0.obs;
 
   List<Cart> get cartList => _cartList;
-  List<int> get selectedProductsInCartList => _selectedProducts;
-  bool get isAllSelected => _isAllSelected.value;
+  List<int> get selectedItemsInCartList => _selectedItems;
+  bool get isAllItemsSelected => _isAllItemsSelected.value;
   double get total => _total.value;
 
   final Auth _auth = Get.put(Auth());
@@ -26,33 +26,58 @@ class CartListController extends GetxController {
     final cartList = await CartAPI.fetchCurrentUserCartList(body: {"userID": _auth.currentUser!.id!.toString()});
     _cartList.value = cartList;
     _calculateTotalCost();
+    update();
   }
 
   _calculateTotalCost() {
     _total.value = 0;
-    if (_selectedProducts.isNotEmpty) {
+    if (_selectedItems.isNotEmpty) {
       for (var productInCart in _cartList) {
-        if (_selectedProducts.contains(productInCart.id)) {
+        if (_selectedItems.contains(productInCart.id)) {
           _total.value += (productInCart.product!.price!) * double.parse(productInCart.quantity.toString());
         }
       }
     }
   }
 
-  updateSelectedProduct(int selectedProductID) {
-    if (_selectedProducts.contains(selectedProductID)) {
-      _selectedProducts.remove(selectedProductID);
+  toggleAllItemsSelection() {
+    if (_isAllItemsSelected.value) {
+      clearSelectedProducts();
     } else {
-      _selectedProducts.add(selectedProductID);
+      for (var e in cartList) {
+        (!_selectedItems.contains(e.id)) ? updateSelectedProduct(e.id!) : "";
+      }
     }
     _calculateTotalCost();
+  }
+
+  updateSelectedProduct(int selectedProductID) {
+    (_selectedItems.contains(selectedProductID)) ? _selectedItems.remove(selectedProductID) : _selectedItems.add(selectedProductID);
+    _isAllItemsSelected.value = (_selectedItems.length == cartList.length) ? true : false;
+
+    _calculateTotalCost();
+
     update();
   }
 
-  setIsAllSelected() => _isAllSelected.value = !_isAllSelected.value;
+  setIsAllSelected() => _isAllItemsSelected.value = !_isAllItemsSelected.value;
 
   clearSelectedProducts() {
-    _selectedProducts.clear();
+    _selectedItems.clear();
+    _isAllItemsSelected.value = false;
+    update();
+  }
+
+  clearSelectedItems() async {
+    for (var item in _selectedItems) {
+      await CartAPI.delete(body: {'id': item.toString()});
+    }
+
+    _getCurrentUserCartList();
+    if (_selectedItems.isEmpty) {
+      Get.snackbar('Success', "Done");
+    }
+
     update();
   }
 }
