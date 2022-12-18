@@ -17,7 +17,7 @@ Expanded buildProductInfo({required Product product}) {
           // Tags
           Text(
             "Tags:\n${product.tags.toString().replaceAll('[', '').replaceAll(']', '').capitalize!}",
-            style: const TextStyle(color: Colors.white, fontSize: 12),
+            style: TextStyle(color: Get.theme.colorScheme.onSecondaryContainer, fontSize: 12),
           ),
           const SizedBox(height: 8),
           // Rating

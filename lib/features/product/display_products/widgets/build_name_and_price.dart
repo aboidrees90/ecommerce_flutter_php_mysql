@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Row buildNameAndPrice({required String name, required double price}) {
   return Row(
@@ -8,13 +9,13 @@ Row buildNameAndPrice({required String name, required double price}) {
           name,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(color: Colors.grey, fontSize: 14, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Get.theme.colorScheme.onPrimaryContainer, fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ),
       const SizedBox(width: 10),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Text("\$$price", style: const TextStyle(color: Colors.amber, fontSize: 14, fontWeight: FontWeight.bold)),
+        child: Text("\$$price", style: TextStyle(color: Get.theme.colorScheme.primary, fontSize: 14, fontWeight: FontWeight.bold)),
       ),
     ],
   );

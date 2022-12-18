@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 
 Row buildRatingBar({required double rating, required void Function(double) onRatingUpdate}) {
   return Row(
@@ -11,7 +12,7 @@ Row buildRatingBar({required double rating, required void Function(double) onRat
         direction: Axis.horizontal,
         allowHalfRating: true,
         itemCount: 5,
-        itemBuilder: (_, __) => const Icon(Icons.star, color: Colors.amber),
+        itemBuilder: (_, __) => Icon(Icons.star, color: Get.theme.colorScheme.primary),
         onRatingUpdate: onRatingUpdate,
         ignoreGestures: true,
         unratedColor: Colors.grey,
@@ -21,7 +22,7 @@ Row buildRatingBar({required double rating, required void Function(double) onRat
       const SizedBox(width: 8),
 
       // rating number
-      Text("($rating)", style: const TextStyle(color: Colors.amber, fontSize: 16))
+      Text("($rating)", style: TextStyle(color: Get.theme.colorScheme.primary, fontSize: 16))
     ],
   );
 }

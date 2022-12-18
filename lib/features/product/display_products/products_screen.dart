@@ -2,6 +2,7 @@ import 'package:ecommerce_php/features/product/display_products/widgets/products
 import 'package:ecommerce_php/features/product/display_products/widgets/search_bar.dart';
 import 'package:ecommerce_php/features/product/display_products/widgets/trending_products.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -33,7 +34,7 @@ class ProductsScreen extends StatelessWidget {
         const SizedBox(height: 18),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
+          child: Text(title, style: TextStyle(color: Get.theme.colorScheme.primary, fontWeight: FontWeight.bold, fontSize: 20)),
         )
       ],
     );

@@ -12,18 +12,23 @@ class UploadItemForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UploadProductsController uploadProductController = Get.put(UploadProductsController());
-
+    final colorScheme = Get.theme.colorScheme;
     return Container(
       margin: const EdgeInsets.all(16.0),
       padding: const EdgeInsets.fromLTRB(30, 20, 30, 8),
       decoration: BoxDecoration(
-        color: Colors.grey.shade800,
+        color: colorScheme.primaryContainer,
         borderRadius: const BorderRadius.all(Radius.circular(50)),
         boxShadow: const [glowingShadow],
       ),
       child: Column(
         children: [
-          const Center(child: Text("Add New Product", style: TextStyle(fontSize: 20, color: Colors.white))),
+          Center(
+            child: Text(
+              "New Product Details",
+              style: TextStyle(fontSize: 20, color: colorScheme.primary, fontWeight: FontWeight.bold),
+            ),
+          ),
           const SizedBox(height: 16),
           // Email/Password sing In - form
           Form(
@@ -107,6 +112,7 @@ class UploadItemForm extends StatelessWidget {
                 // Button
                 Button(
                   text: "Save",
+                  color: colorScheme.primary,
                   onTap: () async => (_formKey.currentState!.validate()) ? await uploadProductController.save() : null,
                 ),
               ],

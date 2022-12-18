@@ -12,7 +12,7 @@ class SelectImage extends StatelessWidget {
     final UploadProductsController controller = Get.put(UploadProductsController());
 
     return Container(
-      decoration: const BoxDecoration(gradient: LinearGradient(colors: [Colors.black54, Colors.deepPurple])),
+      decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black54, Get.theme.colorScheme.primary])),
       padding: const EdgeInsets.symmetric(horizontal: 30),
       height: Get.height / 4,
       child: Row(

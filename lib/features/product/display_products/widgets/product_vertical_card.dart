@@ -23,7 +23,7 @@ class ProductVerticalCard extends StatelessWidget {
         width: width,
         margin: margin ?? const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: const Color(0xFF424242),
+          color: Get.theme.colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [shadowDown],
         ),

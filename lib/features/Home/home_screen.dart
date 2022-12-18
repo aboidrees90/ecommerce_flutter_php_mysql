@@ -13,6 +13,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Get.theme.colorScheme;
+
     return GetBuilder(
       init: Auth(),
       initState: (currentState) => auth,
@@ -21,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           bottom: false,
           child: Scaffold(
             extendBody: true,
-            backgroundColor: Colors.white24,
+            // backgroundColor: Colors.white24,
             body: Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: PageStorage(
@@ -34,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                     tooltip: "Add New Item",
                     shape: const CircleBorder(),
                     // backgroundColor: Colors.black,
-                    child: const Icon(Icons.add),
+                    child: Icon(Icons.add, color: colorScheme.primary),
                     onPressed: () => Get.toNamed(AppRoutes.newProduct),
                   )
                 : null,
@@ -43,7 +45,6 @@ class HomeScreen extends StatelessWidget {
               () => BottomAppBar(
                 shape: const CircularNotchedRectangle(),
                 notchMargin: 10,
-                // color: Colors.black,
                 elevation: 5,
                 child: SizedBox(
                   height: 70,
@@ -60,8 +61,8 @@ class HomeScreen extends StatelessWidget {
                             activeIcon: navBtnPropsList[0]["active_icon"],
                             nonActiveIcon: navBtnPropsList[0]["non_active_icon"],
                             label: navBtnPropsList[0]["label"],
-                            selectedColor: Colors.white,
-                            unSelectedColor: Colors.white38,
+                            selectedColor: colorScheme.primary,
+                            unSelectedColor: colorScheme.onSecondary,
                           ),
                           BottomAppBarItem(
                             index: 1,
@@ -70,8 +71,8 @@ class HomeScreen extends StatelessWidget {
                             activeIcon: navBtnPropsList[1]["active_icon"],
                             nonActiveIcon: navBtnPropsList[1]["non_active_icon"],
                             label: navBtnPropsList[1]["label"],
-                            selectedColor: Colors.white,
-                            unSelectedColor: Colors.white38,
+                            selectedColor: colorScheme.primary,
+                            unSelectedColor: colorScheme.onSecondary,
                           ),
                         ],
                       ),
@@ -85,8 +86,8 @@ class HomeScreen extends StatelessWidget {
                             activeIcon: navBtnPropsList[2]["active_icon"],
                             nonActiveIcon: navBtnPropsList[2]["non_active_icon"],
                             label: navBtnPropsList[2]["label"],
-                            selectedColor: Colors.white,
-                            unSelectedColor: Colors.white38,
+                            selectedColor: colorScheme.primary,
+                            unSelectedColor: colorScheme.onSecondary,
                           ),
                           BottomAppBarItem(
                             index: 3,
@@ -95,8 +96,8 @@ class HomeScreen extends StatelessWidget {
                             activeIcon: navBtnPropsList[3]["active_icon"],
                             nonActiveIcon: navBtnPropsList[3]["non_active_icon"],
                             label: navBtnPropsList[3]["label"],
-                            selectedColor: Colors.white,
-                            unSelectedColor: Colors.white38,
+                            selectedColor: colorScheme.primary,
+                            unSelectedColor: colorScheme.onSecondary,
                           ),
                         ],
                       )

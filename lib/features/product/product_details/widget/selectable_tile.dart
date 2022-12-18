@@ -13,10 +13,12 @@ class SelectableTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var primary = Get.theme.colorScheme.primary;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(label, style: const TextStyle(fontSize: 18, color: Colors.amber, fontWeight: FontWeight.bold)),
+        Text(label, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 8),
         Wrap(
           runSpacing: 8,
@@ -33,10 +35,10 @@ class SelectableTile extends StatelessWidget {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(width: 2, color: currentIndex.value == index ? Colors.white : Colors.grey),
-                    color: currentIndex.value == index ? Colors.amber.withOpacity(0.4) : const Color(0xFF323232),
+                    border: Border.all(width: 2, color: currentIndex.value == index ? Get.theme.colorScheme.outline : Get.theme.colorScheme.onSecondary),
+                    color: currentIndex.value == index ? primary.withOpacity(0.4) : Get.theme.colorScheme.primaryContainer,
                   ),
-                  child: Text(items[index], style: TextStyle(color: currentIndex.value == index ? Colors.white : Colors.grey.shade600)),
+                  child: Text(items[index], style: TextStyle(color: currentIndex.value == index ? Colors.white : Colors.grey)),
                 ),
               );
             });

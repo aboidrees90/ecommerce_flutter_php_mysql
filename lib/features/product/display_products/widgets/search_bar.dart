@@ -16,12 +16,18 @@ class SearchBar extends StatelessWidget {
         style: const TextStyle(color: Colors.white),
         controller: _products.searchTerm,
         decoration: InputDecoration(
-          prefixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.search, color: Colors.amber)),
+          prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.search, color: Get.theme.colorScheme.primary)),
           hintText: "Search ...",
           hintStyle: const TextStyle(color: Colors.grey, fontSize: 12),
-          suffixIcon: IconButton(onPressed: () => Get.toNamed(AppRoutes.cart), icon: const Icon(Icons.shopping_cart, color: Colors.amber)),
-          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: const BorderSide(width: 2, color: Colors.white24)),
-          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(30), borderSide: const BorderSide(width: 2, color: Colors.amber)),
+          suffixIcon: IconButton(onPressed: () => Get.toNamed(AppRoutes.cart), icon: Icon(Icons.shopping_cart, color: Get.theme.colorScheme.primary)),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(width: 2, color: Get.theme.colorScheme.primary.withAlpha(100)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: BorderSide(width: 2, color: Get.theme.colorScheme.primary),
+          ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         ),
       ),

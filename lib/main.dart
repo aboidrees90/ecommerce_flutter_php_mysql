@@ -22,8 +22,18 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Ecommerce App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, fontFamily: GoogleFonts.cairo().fontFamily, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, fontFamily: GoogleFonts.cairo().fontFamily, colorScheme: darkColorScheme),
+      theme: ThemeData(
+        useMaterial3: true,
+        fontFamily: GoogleFonts.cairo().fontFamily,
+        primarySwatch: Colors.amber,
+        colorScheme: lightColorScheme,
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        fontFamily: GoogleFonts.cairo().fontFamily,
+        primarySwatch: Colors.amber,
+        colorScheme: darkColorScheme,
+      ),
       home: FutureBuilder(
         future: _auth.initializeAuth(),
         builder: (context, snapshot) => (_auth.currentUser == null) ? SignInScreen() : HomeScreen(),
