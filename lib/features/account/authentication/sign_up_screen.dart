@@ -1,4 +1,5 @@
 import 'package:ecommerce_php/controller/sign_up_controller.dart';
+import 'package:ecommerce_php/core/constants/shadows.dart';
 import 'package:ecommerce_php/core/functions/input_style.dart';
 import 'package:ecommerce_php/features/widgets/auth_screen_head.dart';
 import 'package:ecommerce_php/features/widgets/button.dart';
@@ -19,7 +20,6 @@ class SignUpScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
         body: LayoutBuilder(
           builder: (context, cons) {
             return ConstrainedBox(
@@ -34,10 +34,10 @@ class SignUpScreen extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.all(16.0),
                       padding: const EdgeInsets.fromLTRB(30, 30, 30, 8),
-                      decoration: const BoxDecoration(
-                        color: Colors.white24,
-                        borderRadius: BorderRadius.all(Radius.circular(60)),
-                        boxShadow: [BoxShadow(blurRadius: 8, color: Colors.black26, offset: Offset(0, -3))],
+                      decoration: BoxDecoration(
+                        color: Get.isDarkMode ? Colors.white24 : Colors.white.withOpacity(0.98),
+                        borderRadius: const BorderRadius.all(Radius.circular(60)),
+                        boxShadow: const [shadowDown],
                       ),
                       child: Column(
                         children: [
@@ -71,7 +71,10 @@ class SignUpScreen extends StatelessWidget {
                                       suffixIcon: Obx(
                                         () => GestureDetector(
                                           onTap: () => _isObscure.value = !_isObscure.value,
-                                          child: Icon(_isObscure.value ? Icons.visibility_off : Icons.visibility, color: Colors.black),
+                                          child: Icon(
+                                            _isObscure.value ? Icons.visibility_off : Icons.visibility,
+                                            color: Get.theme.colorScheme.primary.withAlpha(150),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -84,6 +87,7 @@ class SignUpScreen extends StatelessWidget {
                                 Button(
                                   text: "Sign up",
                                   textSize: 16.0,
+                                  color: Get.theme.colorScheme.primary,
                                   padding: const EdgeInsets.all(4),
                                   onTap: () async => (_formKey.currentState!.validate()) ? await _controller.signUp() : null,
                                 ),
@@ -98,7 +102,7 @@ class SignUpScreen extends StatelessWidget {
                               const Text("Already have an account?", style: TextStyle(color: Colors.grey, fontSize: 14)),
                               TextButton(
                                 onPressed: _controller.goToSignIn,
-                                child: const Text("Sign in from here", style: TextStyle(color: Colors.white, fontSize: 16)),
+                                child: Text("Sign in from here", style: TextStyle(color: Get.theme.colorScheme.primary, fontSize: 16)),
                               ),
                             ],
                           ),

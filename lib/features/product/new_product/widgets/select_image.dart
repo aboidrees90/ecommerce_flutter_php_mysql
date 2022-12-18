@@ -11,27 +11,37 @@ class SelectImage extends StatelessWidget {
   Widget build(BuildContext context) {
     final UploadProductsController controller = Get.put(UploadProductsController());
 
-    return Container(
-      decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black54, Get.theme.colorScheme.primary])),
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      height: Get.height / 4,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          IconButton(
-            onPressed: () async => await controller.pickImage(ImageSource.camera),
-            icon: const Icon(FontAwesomeIcons.camera, color: Colors.white54),
-            selectedIcon: const Icon(Icons.add_photo_alternate, color: Colors.red),
-            iconSize: 80,
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.black54, Get.theme.colorScheme.primary])),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          height: Get.height / 4,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                onPressed: () async => await controller.pickImage(ImageSource.camera),
+                icon: const Icon(FontAwesomeIcons.camera, color: Colors.white54),
+                selectedIcon: const Icon(Icons.add_photo_alternate, color: Colors.red),
+                iconSize: 80,
+              ),
+              IconButton(
+                onPressed: () async => await controller.pickImage(ImageSource.gallery),
+                icon: const Icon(Icons.add_photo_alternate, color: Colors.white54),
+                selectedIcon: const Icon(Icons.add_photo_alternate, color: Colors.red),
+                iconSize: 80,
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: () async => await controller.pickImage(ImageSource.gallery),
-            icon: const Icon(Icons.add_photo_alternate, color: Colors.white54),
-            selectedIcon: const Icon(Icons.add_photo_alternate, color: Colors.red),
-            iconSize: 80,
-          ),
-        ],
-      ),
+        ),
+        IconButton(
+          alignment: Alignment.topLeft,
+          icon: const Icon(Icons.keyboard_backspace),
+          color: Colors.white,
+          onPressed: Get.back,
+        ),
+      ],
     );
   }
 }

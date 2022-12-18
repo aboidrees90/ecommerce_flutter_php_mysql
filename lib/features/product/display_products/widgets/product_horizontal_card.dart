@@ -23,7 +23,7 @@ class ProductHorizontalCard extends StatelessWidget {
         width: width,
         margin: margin ?? const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Get.theme.colorScheme.primaryContainer,
+          color: Get.isDarkMode ? Colors.white24 : Colors.white.withOpacity(0.98),
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [shadowDown],
         ),

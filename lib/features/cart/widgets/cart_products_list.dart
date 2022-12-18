@@ -11,14 +11,13 @@ class CartProductsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartListController = Get.put(CartListController());
 
-    final colorScheme = Get.theme.colorScheme;
-
     return Obx(() {
       return ListView.builder(
         itemCount: cartListController.cartList.length,
         itemBuilder: (context, index) {
           final cartItem = cartListController.cartList[index];
           final product = cartItem.product!;
+          final colorScheme = Get.theme.colorScheme;
 
           return Container(
             width: double.infinity,
@@ -79,14 +78,45 @@ class CartProductsList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               // + button
-                              IconButton(onPressed: () {}, icon: Icon(Icons.add_circle_outline, color: colorScheme.primary, size: 32)),
+                              IconButton(
+                                onPressed: () => cartListController.updateCartItem(
+                                  body: {'id': product.id!.toString(), 'quantity': (cartItem.quantity + 1).toString()},
+                                ),
+                                icon: Icon(Icons.add_circle_outline, color: colorScheme.primary, size: 32),
+                              ),
 
                               // Quantity
                               Text(cartItem.quantity.toString(), style: TextStyle(color: colorScheme.primary, fontSize: 16)),
 
                               // - button
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  if (cartItem.quantity > 1) {
+                                    cartListController.updateCartItem(
+                                      body: {'id': product.id!.toString(), 'quantity': (cartItem.quantity - 1).toString()},
+                                    );
+                                  } else {
+                                    var response = await Get.dialog(
+                                      AlertDialog(
+                                        backgroundColor: colorScheme.primaryContainer,
+                                        title: Text(
+                                          "Remove From Cart",
+                                          style: TextStyle(color: colorScheme.primary, fontSize: 16, fontWeight: FontWeight.bold),
+                                        ),
+                                        content: const Text("Are you sure?\nyou want to remove item from cart?"),
+                                        actions: [
+                                          TextButton(onPressed: Get.back, child: const Text("Cancel", style: TextStyle(fontSize: 20))),
+                                          TextButton(
+                                            child: const Text("Delete", style: TextStyle(color: Colors.redAccent, fontSize: 16)),
+                                            onPressed: () => Get.back(result: "DELETE"),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+
+                                    if (response == "DELETE") cartListController.deleteCartByID(product.id!);
+                                  }
+                                },
                                 icon: Icon(
                                   cartItem.quantity < 2 ? Icons.delete_outline : Icons.remove_circle_outline_outlined,
                                   color: cartItem.quantity < 2 ? Colors.redAccent : colorScheme.primary,

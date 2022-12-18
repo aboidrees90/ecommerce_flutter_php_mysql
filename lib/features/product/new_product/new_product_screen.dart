@@ -12,12 +12,25 @@ class NewProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final UploadProductsController controller = Get.put(UploadProductsController());
 
-    return Scaffold(
-      body: ListView(
-        children: [
-          Obx(() => controller.imagePath.value == "" ? const SelectImage() : const DisplayImage()),
-          UploadItemForm(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: Container(
+          height: Get.size.height,
+          decoration: BoxDecoration(
+            color: Get.theme.colorScheme.primaryContainer,
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            child: ListView(
+              children: [
+                Obx(() => controller.imagePath.value == "" ? const SelectImage() : const DisplayImage()),
+                UploadItemForm(),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

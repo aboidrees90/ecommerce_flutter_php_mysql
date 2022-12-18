@@ -68,16 +68,28 @@ class CartListController extends GetxController {
     update();
   }
 
-  clearSelectedItems() async {
-    for (var item in _selectedItems) {
-      await CartAPI.delete(body: {'id': item.toString()});
-    }
+  updateCartItem({required Map<String, String> body}) async {
+    await CartAPI.update(body: body);
 
     _getCurrentUserCartList();
+
+    update();
+  }
+
+  deleteCartByID(int id) async {
+    await CartAPI.delete(body: {'id': id.toString()});
+    _getCurrentUserCartList();
+
+    update();
+  }
+
+  clearSelectedItems() async {
+    for (var item in _selectedItems) {
+      await deleteCartByID(item);
+    }
+
     if (_selectedItems.isEmpty) {
       Get.snackbar('Success', "Done");
     }
-
-    update();
   }
 }

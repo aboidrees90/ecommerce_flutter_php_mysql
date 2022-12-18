@@ -14,20 +14,37 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          //product image
-          ProductImage(
-            image: product.image!,
-            width: Get.size.width,
-            height: Get.size.height * 0.5,
-            borderRadius: const BorderRadius.all(Radius.zero),
-          ),
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            //product image
+            Container(
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+              child: ProductImage(
+                image: product.image!,
+                width: Get.size.width,
+                height: Get.size.height * 0.5,
+                borderRadius: BorderRadius.zero,
+              ),
+            ),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: CircleAvatar(
+                radius: 15,
+                backgroundColor: Get.theme.colorScheme.primary,
+                child: IconButton(icon: const Icon(Icons.close, color: Colors.white, size: 14), onPressed: Get.back),
+              ),
+            ),
 
-          // name and price
-          Align(alignment: Alignment.bottomCenter, child: ProductInfo(product: product)),
-        ],
+            // name and price
+            Align(alignment: Alignment.bottomCenter, child: ProductInfo(product: product)),
+          ],
+        ),
       ),
     );
   }

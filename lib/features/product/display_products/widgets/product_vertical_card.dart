@@ -23,7 +23,7 @@ class ProductVerticalCard extends StatelessWidget {
         width: width,
         margin: margin ?? const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Get.theme.colorScheme.primaryContainer,
+          color: Get.isDarkMode ? Colors.white24 : Colors.white.withOpacity(0.98),
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [shadowDown],
         ),
@@ -33,7 +33,7 @@ class ProductVerticalCard extends StatelessWidget {
             ProductImage(
               image: product.image!,
               width: width,
-              height: 150,
+              height: 130,
               borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
             ),
             // Item name & price

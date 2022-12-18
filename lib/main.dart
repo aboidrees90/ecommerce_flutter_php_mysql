@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.amber,
         colorScheme: darkColorScheme,
       ),
+      themeMode: ThemeMode.system,
       home: FutureBuilder(
         future: _auth.initializeAuth(),
         builder: (context, snapshot) => (_auth.currentUser == null) ? SignInScreen() : HomeScreen(),

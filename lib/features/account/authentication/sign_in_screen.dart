@@ -1,4 +1,5 @@
 import 'package:ecommerce_php/controller/sign_in_controller.dart';
+import 'package:ecommerce_php/core/constants/shadows.dart';
 import 'package:ecommerce_php/core/functions/input_style.dart';
 import 'package:ecommerce_php/features/widgets/auth_screen_head.dart';
 import 'package:ecommerce_php/features/widgets/button.dart';
@@ -19,7 +20,6 @@ class SignInScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
         body: LayoutBuilder(
           builder: (context, cons) {
             return ConstrainedBox(
@@ -34,14 +34,14 @@ class SignInScreen extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.all(16.0),
                       padding: const EdgeInsets.fromLTRB(30, 30, 30, 8),
-                      decoration: const BoxDecoration(
-                        color: Colors.white24,
-                        borderRadius: BorderRadius.all(Radius.circular(60)),
-                        boxShadow: [BoxShadow(blurRadius: 8, color: Colors.black26, offset: Offset(0, -3))],
+                      decoration: BoxDecoration(
+                        color: Get.isDarkMode ? Colors.white24 : Colors.white.withOpacity(0.95),
+                        borderRadius: const BorderRadius.all(Radius.circular(60)),
+                        boxShadow: const [shadowDown],
                       ),
                       child: Column(
                         children: [
-                          const Center(child: Text("Sign In", style: TextStyle(fontSize: 20, color: Colors.white))),
+                          Center(child: Text("Sign In", style: TextStyle(fontSize: 20, color: Get.theme.colorScheme.primary))),
                           const SizedBox(height: 36),
 
                           // Email/Password sing In - form
@@ -72,7 +72,10 @@ class SignInScreen extends StatelessWidget {
                                       suffixIcon: Obx(
                                         () => GestureDetector(
                                           onTap: () => _isObscure.value = !_isObscure.value,
-                                          child: Icon(_isObscure.value ? Icons.visibility_off : Icons.visibility, color: Colors.black),
+                                          child: Icon(
+                                            _isObscure.value ? Icons.visibility_off : Icons.visibility,
+                                            color: Get.theme.colorScheme.primary.withAlpha(150),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -85,6 +88,7 @@ class SignInScreen extends StatelessWidget {
                                 Button(
                                   text: "Sing In",
                                   textSize: 16.0,
+                                  color: Get.theme.colorScheme.primary,
                                   padding: const EdgeInsets.all(4),
                                   onTap: () async => (_formKey.currentState!.validate()) ? await _controller.signIn() : null,
                                 ),
@@ -99,7 +103,7 @@ class SignInScreen extends StatelessWidget {
                               const Text("Don't have an account?", style: TextStyle(color: Colors.grey, fontSize: 14)),
                               TextButton(
                                 onPressed: _controller.goToSignUp,
-                                child: const Text("Sign up from here", style: TextStyle(color: Colors.white, fontSize: 16)),
+                                child: Text("Sign up from here", style: TextStyle(color: Get.theme.colorScheme.primary, fontSize: 16)),
                               ),
                             ],
                           ),

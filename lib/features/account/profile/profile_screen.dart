@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
               onPressed: () => Get.back(result: "signed_out"),
               child: const Text(
                 "Yes",
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                style: TextStyle(color: Colors.redAccent, fontSize: 16),
               )),
         ],
       ),
@@ -61,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: 20),
           Center(
             child: Button(
-              text: "Sign up",
+              text: "Sign Out",
               color: Colors.redAccent,
               textSize: 16.0,
               padding: const EdgeInsets.all(4),

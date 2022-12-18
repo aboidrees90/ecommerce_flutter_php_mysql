@@ -26,18 +26,18 @@ class CartListScreen extends StatelessWidget {
                     var response = await Get.dialog(
                       AlertDialog(
                         backgroundColor: Get.theme.colorScheme.primaryContainer,
-                        title: Text("Signing out", style: TextStyle(color: Get.theme.colorScheme.primary, fontSize: 16, fontWeight: FontWeight.bold)),
-                        content: const Text("Are you sure?\nyou want to sign out from app?"),
+                        title: Text("Clear Cart", style: TextStyle(color: colorScheme.primary, fontSize: 16, fontWeight: FontWeight.bold)),
+                        content: const Text("Are you sure?\nyou want to remove all product from cart?"),
                         actions: [
                           TextButton(onPressed: Get.back, child: const Text("Cancel", style: TextStyle(fontSize: 20))),
                           TextButton(
-                            child: const Text("Delete", style: TextStyle(color: Colors.white, fontSize: 16)),
+                            child: const Text("Clear Cart", style: TextStyle(color: Colors.redAccent, fontSize: 16)),
                             onPressed: () => Get.back(result: "DELETE"),
                           ),
                         ],
                       ),
                     );
-                    print(response);
+
                     if (response == "DELETE") cartListController.clearSelectedItems();
                   },
                   icon: const Icon(Icons.delete_sweep, color: Colors.redAccent, size: 28),

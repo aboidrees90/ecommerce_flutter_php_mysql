@@ -23,12 +23,18 @@ class HomeScreen extends StatelessWidget {
           bottom: false,
           child: Scaffold(
             extendBody: true,
-            // backgroundColor: Colors.white24,
-            body: Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: PageStorage(
-                bucket: bucket,
-                child: Obx(() => screensList[indexNumber.value]),
+            backgroundColor: Colors.black,
+            body: Container(
+              decoration: BoxDecoration(
+                color: Get.theme.colorScheme.primaryContainer,
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: PageStorage(
+                  bucket: bucket,
+                  child: Obx(() => screensList[indexNumber.value]),
+                ),
               ),
             ),
             floatingActionButton: auth.isAdmin
