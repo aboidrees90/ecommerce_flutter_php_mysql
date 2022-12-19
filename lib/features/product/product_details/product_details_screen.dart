@@ -1,4 +1,5 @@
 import 'package:ecommerce_php/controller/product_details_controller.dart';
+import 'package:ecommerce_php/core/constants/routes_names.dart';
 import 'package:ecommerce_php/features/product/build_rating_bar.dart';
 import 'package:ecommerce_php/features/product/product_details/widget/selectable_tile.dart';
 import 'package:ecommerce_php/features/product/product_image.dart';
@@ -14,6 +15,8 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Get.theme.colorScheme;
+
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -21,7 +24,7 @@ class ProductDetailsScreen extends StatelessWidget {
             //product image
             Container(
               decoration: const BoxDecoration(
-                color: Colors.black,
+                color: Colors.transparent,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
               child: ProductImage(
@@ -31,18 +34,37 @@ class ProductDetailsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.zero,
               ),
             ),
-            Positioned(
-              top: 10,
-              left: 10,
-              child: CircleAvatar(
-                radius: 15,
-                backgroundColor: Get.theme.colorScheme.primary,
-                child: IconButton(icon: const Icon(Icons.close, color: Colors.white, size: 14), onPressed: Get.back),
-              ),
-            ),
 
             // name and price
             Align(alignment: Alignment.bottomCenter, child: ProductInfo(product: product)),
+            // favorite - shopping cart - back
+            Positioned(
+              top: 0,
+              right: 0,
+              left: 0,
+              child: Container(
+                color: Colors.transparent,
+                child: Row(
+                  children: [
+                    //back button
+                    IconButton(icon: Icon(Icons.keyboard_backspace, color: colorScheme.primary), onPressed: Get.back),
+
+                    const Spacer(),
+                    // favorite button
+                    IconButton(
+                      icon: Icon(Icons.bookmark, color: colorScheme.primary),
+                      onPressed: () {},
+                    ),
+
+                    // cart button
+                    IconButton(
+                      icon: Icon(Icons.shopping_cart, color: colorScheme.primary),
+                      onPressed: () => Get.toNamed(AppRoutes.cart),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

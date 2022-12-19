@@ -1,16 +1,18 @@
 class Connections {
-  static const _baseURL = "http://192.168.137.1/api";
+  static const _baseURL = "http://172.16.60.66/api";
   static const _userURL = "$_baseURL/user";
   static const _cartURL = "$_baseURL/cart";
   static const _filesURL = "$_baseURL/files";
   static const _uploadsURL = "$_baseURL/uploads";
   static const _productsURL = "$_baseURL/products";
+  static const _favoritesURL = "$_baseURL/favorites";
 
   static get baseURL => _baseURL;
   static get userURL => _userURL;
   static get filesURL => _filesURL;
   static get uploadsURL => _uploadsURL;
   static get productsURL => _productsURL;
+  static get favoritesURL => _favoritesURL;
 
   // Auth  user
   static const signUp = "$_userURL/sign_up.php";
@@ -30,4 +32,10 @@ class Connections {
   static const getCartList = "$_cartURL/get.php";
   static const removeFromCart = "$_cartURL/delete.php";
   static const updateCartItem = "$_cartURL/update.php";
+
+  // favorite
+  static const addToFavorite = "$_favoritesURL/add.php";
+  static const getFavoriteList = "$_favoritesURL/get.php";
+  static const removeFromFavorite = "$_favoritesURL/delete.php";
+  // static const updateCartItem = "$_cartURL/update.php";
 }
