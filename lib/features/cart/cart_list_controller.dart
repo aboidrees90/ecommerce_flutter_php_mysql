@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ecommerce_php/features/account/authentication/auth_controller.dart';
 import 'package:ecommerce_php/model/cart.dart';
 import 'package:ecommerce_php/services/cart_api.dart';
@@ -23,10 +25,14 @@ class CartListController extends GetxController {
   }
 
   _getCurrentUserCartList() async {
-    final cartList = await CartAPI.fetchCurrentUserCartList(body: {"userID": _auth.currentUser!.id!.toString()});
-    _cartList.value = cartList;
-    _calculateTotalCost();
-    update();
+    try {
+      final cartList = await CartAPI.fetchCurrentUserCartList(body: {"userID": _auth.currentUser!.id!.toString()});
+      _cartList.value = cartList;
+      _calculateTotalCost();
+      update();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   _calculateTotalCost() {
@@ -65,22 +71,27 @@ class CartListController extends GetxController {
   clearSelectedProducts() {
     _selectedItems.clear();
     _isAllItemsSelected.value = false;
-    update();
   }
 
   updateCartItem({required Map<String, String> body}) async {
-    await CartAPI.update(body: body);
-
-    _getCurrentUserCartList();
-
-    update();
+    try {
+      await CartAPI.update(body: body);
+      _getCurrentUserCartList();
+      update();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   deleteCartByID(int id) async {
-    await CartAPI.delete(body: {'id': id.toString()});
-    _getCurrentUserCartList();
+    try {
+      await CartAPI.delete(body: {'id': id.toString()});
+      _getCurrentUserCartList();
 
-    update();
+      update();
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   clearSelectedItems() async {

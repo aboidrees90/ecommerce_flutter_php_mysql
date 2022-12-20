@@ -19,7 +19,7 @@ class AdminSignInController extends AdminSignInBase {
   late TextEditingController email;
   late TextEditingController password;
 
-  final _auth = Get.find<Auth>();
+  final login = Get.find<Auth>().signIn;
 
   @override
   void onInit() {
@@ -38,7 +38,7 @@ class AdminSignInController extends AdminSignInBase {
   @override
   signIn() async {
     try {
-      await _auth.signIn(email: email.text.trim(), password: password.text.trim());
+      await login(email: email.text.trim(), password: password.text.trim());
 
       goToHomeScreen();
     } on UserNotExistsException {

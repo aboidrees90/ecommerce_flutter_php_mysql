@@ -4,32 +4,29 @@ import 'package:ecommerce_php/model/product.dart';
 import 'package:ecommerce_php/services/api.dart';
 
 class FavoriteAPI {
-  static Future<Favorite> add({required Map<String, dynamic> body}) async {
+  static Future<bool> add({required Map<String, dynamic> body}) async {
     try {
-      final res = await API.post(url: Connections.addToFavorite, body: body);
-      return Favorite.fromMap(res);
+      return await API.post(url: Connections.addToFavorite, body: body);
     } catch (e) {
       rethrow;
     }
   }
 
-  static Future delete({required Map<String, dynamic> body}) async {
+  static Future<bool> delete({required Map<String, dynamic> body}) async {
     try {
-      final res = await API.post(url: Connections.removeFromFavorite, body: body);
-      if (res != '') throw "UNKNOWN_ERROR";
+      return await API.post(url: Connections.removeFromFavorite, body: body);
     } catch (e) {
       rethrow;
     }
   }
 
-  // static Future update({required Map<String, dynamic> body}) async {
-  //   try {
-  //     final res = await API.post(url: Connections.updateFavoriteItem, body: body);
-  //     if (res != '') throw "UNKNOWN_ERROR";
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
+  static Future<bool> validateFavorite({required Map<String, dynamic> body}) async {
+    try {
+      return await API.post(url: Connections.validateFavorites, body: body);
+    } catch (e) {
+      rethrow;
+    }
+  }
 
   static Future<List<Favorite>> fetchCurrentUserFavoriteList({required Map<String, dynamic> body}) async {
     try {

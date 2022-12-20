@@ -18,7 +18,7 @@ class SignUpController extends SignUpBase {
   late TextEditingController email;
   late TextEditingController password;
 
-  final _auth = Get.find<Auth>();
+  final register = Get.find<Auth>().signUp;
 
   @override
   void onInit() {
@@ -37,7 +37,7 @@ class SignUpController extends SignUpBase {
   @override
   signUp() async {
     try {
-      final user = await _auth.signUp(email: email.text.trim(), password: password.text.trim());
+      final user = await register(email: email.text.trim(), password: password.text.trim());
 
       if (user != null) {
         goToHomeScreen();
@@ -61,8 +61,5 @@ class SignUpController extends SignUpBase {
   goToSignIn() => Get.offNamed(AppRoutes.signIn);
 
   @override
-  goToHomeScreen() {
-    log(_auth.currentUser.toString());
-    Get.offNamed(AppRoutes.home);
-  }
+  goToHomeScreen() => Get.offNamed(AppRoutes.home);
 }

@@ -37,5 +37,6 @@ class Connections {
   static const addToFavorite = "$_favoritesURL/add.php";
   static const getFavoriteList = "$_favoritesURL/get.php";
   static const removeFromFavorite = "$_favoritesURL/delete.php";
+  static const validateFavorites = "$_favoritesURL/validate.php";
   // static const updateCartItem = "$_cartURL/update.php";
 }
