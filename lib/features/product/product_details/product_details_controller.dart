@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:ecommerce_php/core/classes/rx_nullable.dart';
 import 'package:ecommerce_php/features/account/authentication/auth_controller.dart';
 import 'package:ecommerce_php/model/cart.dart';
-import 'package:ecommerce_php/model/favorite.dart';
 import 'package:ecommerce_php/model/product.dart';
 import 'package:ecommerce_php/services/cart_api.dart';
 import 'package:ecommerce_php/services/favorite_api%20.dart';
@@ -80,10 +79,11 @@ class ProductDetailsController extends GetxController {
   _validateFavorite() {
     if (_product.value == null) return;
 
-    final favorite = Favorite(userID: currentUser!.id!, productID: _product.value!.id!, product: _product.value).toMap();
-
     try {
-      FavoriteAPI.validateFavorite(body: favorite).then(_setIsFavorite);
+      FavoriteAPI.validateFavorite(body: {
+        'userID': currentUser!.id!.toString(),
+        'productID': _product.value!.id!.toString(),
+      }).then(_setIsFavorite);
     } catch (e) {
       log(e.toString());
     }

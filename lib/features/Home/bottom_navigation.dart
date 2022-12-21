@@ -1,7 +1,7 @@
 import 'package:ecommerce_php/features/account/profile/profile_screen.dart';
+import 'package:ecommerce_php/features/favorites/favorites_screen.dart';
+import 'package:ecommerce_php/features/orders/orders_screen.dart';
 import 'package:ecommerce_php/features/product/display_products/products_screen.dart';
-import 'package:ecommerce_php/features/user/favorites/favorites_screen.dart';
-import 'package:ecommerce_php/features/user/orders/orders_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

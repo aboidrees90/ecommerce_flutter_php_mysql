@@ -1,5 +1,6 @@
 import 'package:ecommerce_php/controller/products_controller.dart';
 import 'package:ecommerce_php/core/constants/routes_names.dart';
+import 'package:ecommerce_php/features/product/display_products/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,10 @@ class SearchBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: TextFormField(
+        onTap: () => showSearch(
+          context: context,
+          delegate: SearchScreen(),
+        ),
         style: const TextStyle(color: Colors.white),
         controller: _products.searchTerm,
         decoration: InputDecoration(

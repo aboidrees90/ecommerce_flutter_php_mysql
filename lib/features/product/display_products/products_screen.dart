@@ -9,20 +9,23 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 16),
-          // Search
-          SearchBar(),
+    return SizedBox(
+      height: Get.size.height,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 16),
+            // Search
+            SearchBar(),
 
-          // trending-popular items
-          buildHeading(title: "Trending"),
-          TrendingProduct(),
-          // all Collections/items
-          buildHeading(title: "New Collections"),
-          Products(),
-        ],
+            // trending-popular items
+            buildHeading(title: "Trending"),
+            TrendingProduct(),
+            // all Collections/items
+            buildHeading(title: "New Collections"),
+            Products(),
+          ],
+        ),
       ),
     );
   }

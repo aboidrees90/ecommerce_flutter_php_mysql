@@ -1,5 +1,5 @@
 class Connections {
-  static const _baseURL = "http://172.16.60.66/api";
+  static const _baseURL = "http://192.168.137.1/api";
   static const _userURL = "$_baseURL/user";
   static const _cartURL = "$_baseURL/cart";
   static const _filesURL = "$_baseURL/files";
@@ -24,6 +24,7 @@ class Connections {
 
   // Products
   static const addNewProduct = "$_productsURL/add.php";
+  static const searchProducts = "$_productsURL/search.php";
   static const listAllProducts = "$_productsURL/list_all.php";
   static const listTrendingProducts = "$_productsURL/trending.php";
 

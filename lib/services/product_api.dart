@@ -30,4 +30,13 @@ class ProductAPI {
       rethrow;
     }
   }
+
+  static Future<List<Product>> search({required Map<String, String> body}) async {
+    try {
+      final response = await API.post(url: Connections.searchProducts, body: body);
+      return List<Product>.generate(response.length, (index) => Product.fromMap(response[index]));
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
