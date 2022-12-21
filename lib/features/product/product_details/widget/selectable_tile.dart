@@ -2,10 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SelectableTile extends StatelessWidget {
-  SelectableTile({super.key, required this.items, required this.onPress, required this.label});
-
-  final String label;
+  SelectableTile({
+    super.key,
+    this.width,
+    required this.items,
+    this.itemFontSize = 14,
+    required this.label,
+    this.labelFontSize = 18,
+    this.labelColor = Colors.white,
+    required this.onPress,
+  });
+  final double? width;
   final List<String> items;
+  final double? itemFontSize;
+  final String label;
+  final double? labelFontSize;
+  final Color? labelColor;
   final Function(String value) onPress;
 
   //local variable
@@ -18,7 +30,7 @@ class SelectableTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(label, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        Text(label, style: TextStyle(color: labelColor, fontSize: labelFontSize, fontWeight: FontWeight.bold)),
         const SizedBox(height: 8),
         Wrap(
           runSpacing: 8,
@@ -31,14 +43,14 @@ class SelectableTile extends StatelessWidget {
                 onTap: () => currentIndex.value = index,
                 child: Container(
                   height: 35,
-                  width: (Get.size.width - 24) / 5,
+                  width: width ?? (Get.size.width - 24) / 5,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(width: 2, color: currentIndex.value == index ? Get.theme.colorScheme.outline : Get.theme.colorScheme.onSecondary),
                     color: currentIndex.value == index ? primary.withOpacity(0.4) : Get.theme.colorScheme.primaryContainer,
                   ),
-                  child: Text(items[index], style: TextStyle(color: currentIndex.value == index ? Colors.white : Colors.grey)),
+                  child: Text(items[index], style: TextStyle(color: currentIndex.value == index ? Colors.white : Colors.grey, fontSize: itemFontSize)),
                 ),
               );
             });

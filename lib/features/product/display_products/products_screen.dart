@@ -16,7 +16,7 @@ class ProductsScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 16),
             // Search
-            SearchBar(),
+            const SearchBar(),
 
             // trending-popular items
             buildHeading(title: "Trending"),

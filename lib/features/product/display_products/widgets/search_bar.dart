@@ -1,13 +1,10 @@
-import 'package:ecommerce_php/controller/products_controller.dart';
 import 'package:ecommerce_php/core/constants/routes_names.dart';
-import 'package:ecommerce_php/features/product/display_products/search_screen.dart';
+import 'package:ecommerce_php/features/product/search_products/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SearchBar extends StatelessWidget {
-  SearchBar({super.key});
-
-  final ProductsController _products = Get.put(ProductsController());
+  const SearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,6 @@ class SearchBar extends StatelessWidget {
           delegate: SearchScreen(),
         ),
         style: const TextStyle(color: Colors.white),
-        controller: _products.searchTerm,
         decoration: InputDecoration(
           prefixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.search, color: Get.theme.colorScheme.primary)),
           hintText: "Search ...",

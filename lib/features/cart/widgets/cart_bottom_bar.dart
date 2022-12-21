@@ -1,3 +1,4 @@
+import 'package:ecommerce_php/core/constants/routes_names.dart';
 import 'package:ecommerce_php/core/constants/shadows.dart';
 import 'package:ecommerce_php/features/cart/cart_list_controller.dart';
 import 'package:ecommerce_php/features/widgets/button.dart';
@@ -34,7 +35,7 @@ class CartBottomBar extends StatelessWidget {
               Button(
                 text: 'CHECKOUT',
                 color: controller.selectedItemsInCartList.isEmpty ? colorScheme.primary.withOpacity(0.2) : colorScheme.primary,
-                onTap: controller.selectedItemsInCartList.isEmpty ? null : () {},
+                onTap: controller.selectedItemsInCartList.isEmpty ? null : () => Get.toNamed(AppRoutes.orderNow),
               ),
             ],
           ),

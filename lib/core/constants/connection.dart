@@ -25,7 +25,8 @@ class Connections {
   // Products
   static const addNewProduct = "$_productsURL/add.php";
   static const searchProducts = "$_productsURL/search.php";
-  static const listAllProducts = "$_productsURL/list_all.php";
+  static const getAllProducts = "$_productsURL/get.php";
+  static const getLimited = "$_productsURL/get_limited.php";
   static const listTrendingProducts = "$_productsURL/trending.php";
 
   // cart

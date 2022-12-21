@@ -24,7 +24,16 @@ class ProductAPI {
 
   static Future<List<Product>> fetchAll() async {
     try {
-      final response = await API.get(url: Connections.listAllProducts);
+      final response = await API.get(url: Connections.getAllProducts);
+      return List<Product>.generate(response.length, (index) => Product.fromMap(response[index]));
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static Future<List<Product>> fetchLimited({required Map<String, String> body}) async {
+    try {
+      final response = await API.post(url: Connections.getLimited, body: body);
       return List<Product>.generate(response.length, (index) => Product.fromMap(response[index]));
     } catch (e) {
       rethrow;
