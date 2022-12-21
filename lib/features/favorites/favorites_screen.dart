@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({super.key});
+  FavoritesScreen({super.key});
+
+  final favoriteController = Get.put(FavoriteListController());
 
   @override
   Widget build(BuildContext context) {
-    final favoriteController = Get.put(FavoriteListController());
-
     return SizedBox(
       height: Get.size.height,
       child: SingleChildScrollView(
@@ -32,17 +32,17 @@ class FavoritesScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // display favoritelits
+            // display favoriteLits
             Obx(() {
               return ListView.builder(
-                itemCount: favoriteController.favoriteLits.length,
+                itemCount: favoriteController.favoriteList.length,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
-                  final product = favoriteController.favoriteLits[index].product;
+                  final product = favoriteController.favoriteList[index].product;
                   final isFirst = index == 0 ? 16.0 : 8.0;
-                  final isLast = index == favoriteController.favoriteLits.length - 1 ? 16.0 : 8.0;
+                  final isLast = index == favoriteController.favoriteList.length - 1 ? 16.0 : 8.0;
 
                   return ProductHorizontalCard(
                     height: 120,

@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 List<Widget> screensList = [
   const ProductsScreen(),
-  const FavoritesScreen(),
+  FavoritesScreen(),
   const OrdersScreen(),
   ProfileScreen(),
 ];

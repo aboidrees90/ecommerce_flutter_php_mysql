@@ -52,7 +52,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         controller.setProduct(product);
                         return IconButton(
                           icon: Icon(controller.isFavorite ? Icons.bookmark : Icons.bookmark_add_outlined, color: colorScheme.primary),
-                          onPressed: controller.toggleIsFavorite,
+                          onPressed: controller.setIsFavorite,
                         );
                       }),
 

@@ -11,68 +11,59 @@ class FavoriteListController extends GetxController {
   final RxBool _isAllItemsSelected = false.obs;
   final RxDouble _total = 0.0.obs;
 
-  List<Favorite> get favoriteLits => _favoriteList;
+  List<Favorite> get favoriteList => _favoriteList;
   List<int> get selectedFavoriteItem => _selectedFavoriteItem;
   bool get isAllItemsSelected => _isAllItemsSelected.value;
   double get total => _total.value;
 
-  final Auth _auth = Get.put(Auth());
+  final currentUser = Get.find<Auth>().currentUser;
 
   @override
-  onInit() {
-    _getCurrentUserFavoriteList();
+  onInit() async {
+    await _getCurrentUserFavoriteList();
+
     super.onInit();
   }
 
   _getCurrentUserFavoriteList() async {
+    _favoriteList.clear();
     try {
       FavoriteAPI.fetchCurrentUserFavoriteList(body: {
-        "userID": _auth.currentUser!.id!.toString(),
+        "userID": currentUser!.id!.toString(),
       }).then(_favoriteList);
-
-      update();
     } catch (e) {
       log(e.toString());
     }
   }
 
-  toggleFavoriteItemsSelection() {
+  // Favorite selection
+  selectAllFavorites() {
     if (_isAllItemsSelected.value) {
-      clearSelection();
+      unSelectAllFavorites();
     } else {
-      for (var favorite in favoriteLits) {
-        (!_selectedFavoriteItem.contains(favorite.id)) ? updateSelectedFavoriteItems(favorite.id) : "";
+      for (var favorite in favoriteList) {
+        if (!_selectedFavoriteItem.contains(favorite.id)) {
+          _selectedFavoriteItem.add(favorite.id);
+        }
       }
     }
   }
 
   updateSelectedFavoriteItems(int favoriteID) {
     (_selectedFavoriteItem.contains(favoriteID)) ? _selectedFavoriteItem.remove(favoriteID) : _selectedFavoriteItem.add(favoriteID);
-    _isAllItemsSelected.value = (_selectedFavoriteItem.length == favoriteLits.length) ? true : false;
-
-    update();
+    _isAllItemsSelected.value = (_selectedFavoriteItem.length == favoriteList.length) ? true : false;
   }
 
-  sellectAll() {
-    for (var favorite in _favoriteList) {
-      _selectedFavoriteItem.add(favorite.id);
-    }
-    _isAllItemsSelected.value = true;
-  }
-
-  clearSelection() {
+  unSelectAllFavorites() {
     _selectedFavoriteItem.clear();
     _isAllItemsSelected.value = false;
   }
 
+  // Favorite CURD
   deleteFavoriteByID(int favoriteID) async {
     try {
-      await FavoriteAPI.delete(body: {
-        'id': favoriteID.toString(),
-      });
+      await FavoriteAPI.delete(body: {'id': favoriteID.toString()});
       _getCurrentUserFavoriteList();
-
-      update();
     } catch (e) {
       log(e.toString());
     }
@@ -81,6 +72,44 @@ class FavoriteListController extends GetxController {
   deleteAllSelected() async {
     for (int favoriteID in _selectedFavoriteItem) {
       await deleteFavoriteByID(favoriteID);
+    }
+  }
+
+  Future addToFavorites(int productID) async {
+    try {
+      await FavoriteAPI.add(body: {
+        'userID': currentUser!.id!.toString(),
+        'productID': productID.toString(),
+      });
+      await _getCurrentUserFavoriteList();
+    } catch (e) {
+      log(e.toString());
+      Get.snackbar("Failure", "didn't added to your favorites");
+    }
+  }
+
+  Future removeFromFavorites(int productID) async {
+    try {
+      await FavoriteAPI.delete(body: {
+        'userID': currentUser!.id!.toString(),
+        'productID': productID.toString(),
+      });
+      await _getCurrentUserFavoriteList();
+    } catch (e) {
+      log(e.toString());
+      Get.snackbar("Failure", "didn't removed from your favorites");
+    }
+  }
+
+  Future<bool> isFavorite(int productID) async {
+    try {
+      return await FavoriteAPI.validateFavorite(body: {
+        'userID': currentUser!.id!.toString(),
+        'productID': productID.toString(),
+      });
+    } catch (e) {
+      log(e.toString());
+      return false;
     }
   }
 }

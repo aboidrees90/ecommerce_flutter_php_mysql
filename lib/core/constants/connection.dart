@@ -1,5 +1,5 @@
 class Connections {
-  static const _baseURL = "http://192.168.137.1/api";
+  static const _baseURL = "http://172.16.60.66/api";
   static const _userURL = "$_baseURL/user";
   static const _cartURL = "$_baseURL/cart";
   static const _filesURL = "$_baseURL/files";
